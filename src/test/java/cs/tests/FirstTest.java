@@ -25,6 +25,9 @@ public class FirstTest extends TestNGCitrusTestRunner {
         echo("We have userId = " + context.getVariable("userId"));
         echo("Property \"userId\" = " + "${userId}");
 
+        variable("now", "citrus:currentDate()");
+        echo("Today is: ${now}");
+
 //        applyBehavior(new CreateUserBehavior("Mike", "Teacher"));
 
         http(httpActionBuilder -> httpActionBuilder

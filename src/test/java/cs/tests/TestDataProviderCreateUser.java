@@ -55,8 +55,8 @@ public class TestDataProviderCreateUser extends TestNGCitrusTestRunner {
                         .payload(getResponseData(name, job), "objectMapper")
                         .extractFromPayload("$.id", "currentId")
                         .extractFromPayload("$.createdAt", "createdAt")
+                        .ignore("$.createdAt")
 //                        .ignore("$.id")
-//                        .ignore("$.createdAt")
         );
         echo("currentId = ${currentId} and createdAt = ${createdAt}");
     }
@@ -66,7 +66,7 @@ public class TestDataProviderCreateUser extends TestNGCitrusTestRunner {
         createUserResponse.setName(name);
         createUserResponse.setJob(job);
         createUserResponse.setId("@isNumber()@");
-        createUserResponse.setCreatedAt("@matchesDatePattern('yyyy-MM-dd')@");
+        createUserResponse.setCreatedAt("unknown");
 
         return createUserResponse;
     }
