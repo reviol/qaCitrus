@@ -4,38 +4,19 @@ import com.consol.citrus.annotations.CitrusTest;
 import com.consol.citrus.context.TestContext;
 import com.consol.citrus.dsl.testng.TestNGCitrusTestRunner;
 import com.consol.citrus.message.MessageType;
-import com.consol.citrus.testng.CitrusParameters;
 import cs.pojo.CreateUserResponse;
 import org.springframework.http.HttpStatus;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class TestDataProviderCreateUser extends TestNGCitrusTestRunner {
+public class FirstTestCreateUser extends TestNGCitrusTestRunner {
 
     private TestContext context;
+    String name = "Nick";
+    String job = "Teacher";
 
-    @DataProvider(name = "dataProvider")
-    public Object[][] cardTypeProvider() {
-        return new Object[][]{
-                new Object[]{"George", "Driver"},
-                new Object[]{"Nick", "Teacher"},
-                new Object[]{"Anna", "Tester"},
-                new Object[]{"Mike", "Actor"},
-                new Object[]{"Liana", "Assistant"},
-                new Object[]{"Peter", "Chef"},
-                new Object[]{"Mary", "Conductor"},
-                new Object[]{"Alex", "Controller"},
-                new Object[]{"Ariel", "Decorator"},
-                new Object[]{"Greg", "Fixer"},
-        };
-    }
-
-    @Test(description = "Получение информации о пользователе", dataProvider = "dataProvider" )
-    @Parameters({"context"})
+    @Test(description = "Создание пользователе")
     @CitrusTest
-    @CitrusParameters({"name", "job"})
-    public void getTestActions(String name, String job) {
+    public void getTestActions() {
         this.context = citrus.createTestContext();
         http(httpActionBuilder -> httpActionBuilder
                 .client("restClientReqres")
